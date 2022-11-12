@@ -22,7 +22,7 @@
     "eslint-plugin-jest": "^27.1.4"
   },
   "bin": {
-    "gendiff -h": "bin/gendiff.js"
+    "gendiff": "bin/gendiff.js"
   },
   "devDependencies": {
     "eslint": "^8.27.0",
