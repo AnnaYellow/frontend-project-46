@@ -9,4 +9,4 @@ Gendiff - command line feature and library function. Gendiff shows the differenc
 Hexlet frontend development study progect.
 Level 2.
 
-https://asciinema.org/a/539051
+<a href="https://asciinema.org/a/539051" target="_blank"><img src="https://asciinema.org/a/539051.svg" /></a>
