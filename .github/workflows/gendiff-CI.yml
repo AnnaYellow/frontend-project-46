@@ -1,5 +1,5 @@
 
-name: gendiff node
+name: gendiff CI
 
 on:
   - push
@@ -29,7 +29,7 @@ jobs:
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: 53d9dced34dbb6148c856dc767e63d62815e747c19d07211f627f3887ace2fd1
         with:
           coverageCommand: make test-coverage
           debug: true
