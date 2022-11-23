@@ -12,11 +12,7 @@ gendiff:
 
 lint:
 	npx eslint .
+
+make test-coverage:
+	NODE_OPTIONS=--experimental-vm-modules npx jest --coverage
 	
-
-
-
-	
-
-
-
