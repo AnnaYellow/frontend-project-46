@@ -1,40 +1,29 @@
-import _ from 'lodash';
-import fs from 'fs';
-import path from 'path';
-
-const normalizeFilepath = (filepath) => path.resolve(process.cwd(), filepath);
-
-const convertJsonFileToObject = (filepath) => {
-  const fileContent = fs.readFileSync(filepath);
-  const object = JSON.parse(fileContent);
-  return object;
-};
+import parseJSON from './parsers.js';
+import getDifferenceTree from './ast.js';
 
 const genDiff = (filepath1, filepath2) => {
   if (!filepath1.endsWith('json') || !filepath2.endsWith('json')) {
     console.log('Both files must be json');
     return null;
   }
-  const normalizedFilepath1 = normalizeFilepath(filepath1);
-  const normalizedFilepath2 = normalizeFilepath(filepath2);
-  const object1 = convertJsonFileToObject(normalizedFilepath1);
-  const object2 = convertJsonFileToObject(normalizedFilepath2);
-  const keys = [...Object.keys(object1), ...Object.keys(object2)];
-  const sortedKeys = _.sortBy(keys);
-  const uniqKeys = _.sortedUniq(sortedKeys);
-  const difference = uniqKeys.map((key) => {
-    if (!Object.hasOwn(object1, key) && Object.hasOwn(object2, key)) {
-      return `+ ${key}: ${object2[key]}`;
+
+  const object1 = parseJSON(filepath1);
+  const object2 = parseJSON(filepath2);
+  const differenceTree = getDifferenceTree(object1, object2);
+
+  const differencesToPrint = differenceTree.map((node) => {
+    if (node.status === 'added') {
+      return `+ ${node.name}: ${node.value}`;
     }
-    if (Object.hasOwn(object1, key) && Object.hasOwn(object2, key)) {
-      if (object1[key] === object2[key]) {
-        return `  ${key}: ${object1[key]}`;
-      }
-      return `- ${key}: ${object1[key]}\n+ ${key}: ${object2[key]}`;
+    if (node.status === 'deleted') {
+      return `- ${node.name}: ${node.value}`;
     }
-    return `- ${key}: ${object1[key]}`;
+    if (node.status === 'unchanged') {
+      return `  ${node.name}: ${node.value}`;
+    }
+    return `- ${node.name}: ${node.value}\n+ ${node.name}: ${node.newValue}`;
   });
-  const result = ['{', ...difference, '}'].join('\n');
+  const result = ['{', ...differencesToPrint, '}'].join('\n');
   console.log(result);
   return result;
 };
