@@ -1,15 +1,10 @@
-import parseJSON from './parsers.js';
+import parser from './parsers.js';
 import getDifferenceTree from './ast.js';
 
 const genDiff = (filepath1, filepath2) => {
-  if (!filepath1.endsWith('json') || !filepath2.endsWith('json')) {
-    console.log('Both files must be json');
-    return null;
-  }
-
-  const object1 = parseJSON(filepath1);
-  const object2 = parseJSON(filepath2);
-  const differenceTree = getDifferenceTree(object1, object2);
+  const data1 = parser(filepath1);
+  const data2 = parser(filepath2);
+  const differenceTree = getDifferenceTree(data1, data2);
 
   const differencesToPrint = differenceTree.map((node) => {
     if (node.status === 'added') {

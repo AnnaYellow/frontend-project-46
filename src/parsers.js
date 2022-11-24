@@ -1,14 +1,22 @@
 import fs from 'fs';
 import path from 'path';
+import yaml from 'js-yaml';
 
-const normalizeFilepath = (filepath) => path.resolve(process.cwd(), filepath);
+function parser(filepath) {
+  const normalizedFilepath = path.resolve(process.cwd(), filepath);
+  const format = path.extname(normalizedFilepath);
+  const content = fs.readFileSync(normalizedFilepath, 'utf-8');
 
-const getFileContent = (filepath) => fs.readFileSync(filepath);
+  let parse;
+  if (format === '.json') {
+    parse = JSON.parse;
+  } else if ((format === '.yml') || (format === '.yaml')) {
+    parse = yaml.load;
+  } else {
+    throw Error('Wrong file format. Both files must be json or yaml');
+  }
 
-const parseJSON = (filepath) => {
-  const fileContent = getFileContent(normalizeFilepath(filepath));
-  const ObjectJSON = JSON.parse(fileContent);
-  return ObjectJSON;
-};
+  return parse(content);
+}
 
-export default parseJSON;
+export default parser;

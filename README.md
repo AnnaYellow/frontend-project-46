@@ -3,10 +3,11 @@
 <a href="https://codeclimate.com/github/AnnaYellow/frontend-project-46/maintainability"><img src="https://api.codeclimate.com/v1/badges/9ccfe836cd12033884f3/maintainability" /></a>
 <a href="https://codeclimate.com/github/AnnaYellow/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/9ccfe836cd12033884f3/test_coverage" /></a>
 [![gendiff CI](https://github.com/AnnaYellow/frontend-project-46/actions/workflows/gendiff-CI.yml/badge.svg)](https://github.com/AnnaYellow/frontend-project-46/actions/workflows/gendiff-CI.yml)
+[![asciicast](https://asciinema.org/a/539923.svg)](https://asciinema.org/a/539923)
 
 Gendiff - command line feature and library function. Gendiff shows the difference between two json files.
 
 Hexlet frontend development study progect.
 Level 2.
 
-<a href="https://asciinema.org/a/539051" target="_blank"><img src="https://asciinema.org/a/539051.svg" /></a>
+<a href="https://asciinema.org/a/539923" target="_blank"><img src="https://asciinema.org/a/539923.svg" /></a>
