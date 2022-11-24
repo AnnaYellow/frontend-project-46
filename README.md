@@ -4,7 +4,7 @@
 <a href="https://codeclimate.com/github/AnnaYellow/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/9ccfe836cd12033884f3/test_coverage" /></a>
 [![gendiff CI](https://github.com/AnnaYellow/frontend-project-46/actions/workflows/gendiff-CI.yml/badge.svg)](https://github.com/AnnaYellow/frontend-project-46/actions/workflows/gendiff-CI.yml)
 
-Gendiff - command line feature and library function. Gendiff shows the difference between two json files.
+Gendiff - command line feature and library function. Gendiff shows the difference between two json or yaml files.
 
 Hexlet frontend development study progect.
 Level 2.
