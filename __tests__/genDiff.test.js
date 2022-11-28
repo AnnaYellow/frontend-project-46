@@ -4,6 +4,7 @@ import { expect, test } from '@jest/globals';
 import genDiff from '../src/genDiff.js';
 import stylishResult from '../__fixtures__/stylishResult.js';
 import plainResult from '../__fixtures__/plainResult.js';
+import jsonResult from '../__fixtures__/jsonResult.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,4 +19,8 @@ test('stylish', () => {
 
 test('plain', () => {
   expect(genDiff(filepath1, filepath2, 'plain')).toEqual(plainResult);
+});
+
+test('json', () => {
+  expect(genDiff(filepath1, filepath2, 'json')).toEqual(jsonResult);
 });

@@ -6,7 +6,7 @@
 
 Gendiff - command line feature and library function. Gendiff shows the difference between two json or yaml files.
 
-Hexlet frontend development study progect.
+Hexlet frontend development study project.
 Level 2.
 
-<a href="https://asciinema.org/a/540991" target="_blank"><img src="https://asciinema.org/a/540991.svg" /></a>
+<a href="https://asciinema.org/a/541022" target="_blank"><img src="https://asciinema.org/a/541022.svg" /></a>

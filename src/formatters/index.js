@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import makeStylishDiff from './stylish.js';
 import makePlainDiff from './plain.js';
+import makeJsonDiff from './json.js';
 import getValue from '../utils.js';
 
 const makeDiff = (data, formatName) => {
@@ -19,6 +20,9 @@ const makeDiff = (data, formatName) => {
     }
     case 'plain': {
       return makePlainDiff(data);
+    }
+    case 'json': {
+      return makeJsonDiff(data);
     }
     default: {
       throw Error('Uncorrect format');
