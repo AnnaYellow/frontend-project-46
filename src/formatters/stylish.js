@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import getValue from './utils.js';
+import getValue from '../utils.js';
 
 const makeStylishDiff = (data, indent = ' ', indentSize = 4) => {
   const iter = (currentValue, depth) => {
@@ -28,10 +28,10 @@ const makeStylishDiff = (data, indent = ' ', indentSize = 4) => {
           case 'added': {
             return `${currentIndent}+ ${name}: ${iter(value, depth + 1)}`;
           }
-          case 'deleted': {
+          case 'removed': {
             return `${currentIndent}- ${name}: ${iter(value, depth + 1)}`;
           }
-          case 'changed': {
+          case 'updated': {
             return `${currentIndent}- ${name}: ${iter(value, depth + 1)}\n${currentIndent}+ ${name}: ${iter(newValue, depth + 1)}`;
           }
           case 'unchanged': {

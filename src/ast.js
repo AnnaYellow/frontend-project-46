@@ -28,7 +28,7 @@ const getDifferenceTree = (data1, data2) => {
           name: key,
           value: initialProperty,
           newValue: currentProperty,
-          status: 'changed',
+          status: 'updated',
         };
       }
       if (!Object.hasOwn(object1, key) && Object.hasOwn(object2, key)) {
@@ -41,7 +41,7 @@ const getDifferenceTree = (data1, data2) => {
       return {
         name: key,
         value: initialProperty,
-        status: 'deleted',
+        status: 'removed',
       };
     });
     return children;

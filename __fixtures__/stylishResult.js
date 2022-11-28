@@ -1,4 +1,4 @@
-const result = `{
+const stylishResult = `{
     common: {
       + follow: false
         setting1: Value 1
@@ -42,4 +42,4 @@ const result = `{
         fee: 100500
     }
 }`;
-export default result;
+export default stylishResult;
