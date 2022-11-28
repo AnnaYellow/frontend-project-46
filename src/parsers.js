@@ -2,21 +2,22 @@ import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
 
-function parser(filepath) {
+const parser = (filepath) => {
   const normalizedFilepath = path.resolve(process.cwd(), filepath);
   const format = path.extname(normalizedFilepath);
-  const content = fs.readFileSync(normalizedFilepath, 'utf-8');
+  const file = fs.readFileSync(normalizedFilepath, 'utf-8');
 
-  let parse;
-  if (format === '.json') {
-    parse = JSON.parse;
-  } else if ((format === '.yml') || (format === '.yaml')) {
-    parse = yaml.load;
-  } else {
+  const parse = (formatOfFile, readFile) => {
+    if (formatOfFile === '.json') {
+      return JSON.parse(readFile);
+    }
+    if ((formatOfFile === '.yml') || (format === '.yaml')) {
+      return yaml.load(readFile);
+    }
     throw Error('Wrong file format. Both files must be json or yaml');
-  }
+  };
 
-  return parse(content);
-}
+  return parse(format, file);
+};
 
 export default parser;
