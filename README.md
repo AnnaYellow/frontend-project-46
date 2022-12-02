@@ -9,12 +9,12 @@
 </section>
 
 <section>
-<h3>System requirements:</h3>\n
+<h3>System requirements:</h3>
 <p>Node version 18.x</p>
 </section>
 
 <section>
-<h3>To use package</h3>\n
+<h3>To use package</h3>
 <ul>
 <li>Download package</li>
 <li>In command line: make install, type 'gendiff filepath1, fileparh2, format (stylish, plain, json)'</li>
