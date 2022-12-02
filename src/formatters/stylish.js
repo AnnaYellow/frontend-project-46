@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import getValue from '../utils.js';
+import { indent, indentSize } from '../constants.js';
 
-const makeStylishDiff = (data, indent = ' ', indentSize = 4) => {
+const makeStylishDiff = (data) => {
   const iter = (currentValue, depth) => {
     const currentIndent = indent.repeat(indentSize * depth - 2);
     const braceIndent = indent.repeat(indentSize * depth - indentSize);
@@ -9,35 +9,33 @@ const makeStylishDiff = (data, indent = ' ', indentSize = 4) => {
       return currentValue;
     }
     if (!Object.hasOwn(currentValue, 'children')) {
-      const planeObject = Object
+      const plainObject = Object
         .entries(currentValue)
         .map(([key, val]) => `${currentIndent}  ${key}: ${iter(val, depth + 1)}`);
       return [
         '{',
-        ...planeObject,
+        ...plainObject,
         `${braceIndent}}`,
       ].join('\n');
     }
     const { children } = currentValue;
     const objects = children
       .map((child) => {
-        const { name, status } = child;
-        const value = getValue(child, 'value');
-        const newValue = getValue(child, 'newValue');
-        switch (status) {
-          case 'added': {
-            return `${currentIndent}+ ${name}: ${iter(value, depth + 1)}`;
+        const { name, type } = child;
+        switch (type) {
+          case 'only2': {
+            return `${currentIndent}+ ${name}: ${iter(child.value, depth + 1)}`;
           }
-          case 'removed': {
-            return `${currentIndent}- ${name}: ${iter(value, depth + 1)}`;
+          case 'only1': {
+            return `${currentIndent}- ${name}: ${iter(child.value, depth + 1)}`;
           }
-          case 'updated': {
-            return `${currentIndent}- ${name}: ${iter(value, depth + 1)}\n${currentIndent}+ ${name}: ${iter(newValue, depth + 1)}`;
+          case 'different': {
+            return `${currentIndent}- ${name}: ${iter(child.value, depth + 1)}\n${currentIndent}+ ${name}: ${iter(child.value2, depth + 1)}`;
           }
-          case 'unchanged': {
-            return `${currentIndent}  ${name}: ${iter(value, depth + 1)}`;
+          case 'identical': {
+            return `${currentIndent}  ${name}: ${iter(child.value, depth + 1)}`;
           }
-          case 'node': {
+          case 'nested': {
             return `${currentIndent}  ${name}: ${iter(child, depth + 1)}`;
           }
           default: {

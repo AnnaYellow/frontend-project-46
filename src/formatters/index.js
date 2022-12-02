@@ -1,19 +1,7 @@
-import _ from 'lodash';
-
 import makeStylishDiff from './stylish.js';
 import makePlainDiff from './plain.js';
-import makeJsonDiff from './json.js';
-import getValue from '../utils.js';
 
-const makeDiff = (data, formatName) => {
-  const getFormat = (declaredName) => {
-    if (!_.isObject(declaredName)) {
-      return declaredName;
-    }
-    return getValue(declaredName, 'format');
-  };
-  const format = getFormat(formatName);
-
+const makeDiff = (data, format) => {
   switch (format) {
     case 'stylish': {
       return makeStylishDiff(data);
@@ -22,10 +10,10 @@ const makeDiff = (data, formatName) => {
       return makePlainDiff(data);
     }
     case 'json': {
-      return makeJsonDiff(data);
+      return JSON.stringify(data);
     }
     default: {
-      throw Error('Uncorrect format');
+      throw Error('Incorrect format');
     }
   }
 };

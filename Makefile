@@ -8,7 +8,7 @@ test:
 	NODE_OPTIONS=--experimental-vm-modules npx jest 
 
 gendiff:
-	node src/genDiff.js
+	node index.js
 
 lint:
 	npx eslint .
