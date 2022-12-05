@@ -1,13 +1,10 @@
-const valueToString = (value) => {
+const stringify = (value) => {
   if (value === null) {
     return null;
   }
   const type = typeof value;
   switch (type) {
     case 'object': {
-      return '[complex value]';
-    }
-    case 'array': {
       return '[complex value]';
     }
     case 'string': {
@@ -21,40 +18,41 @@ const valueToString = (value) => {
 
 const getPath = (nodeNames) => nodeNames.flat().join('.');
 
-const stringify = (children, path) => {
+const makePlain = (children, path) => {
   const lines = children
-    .filter((child) => child.type !== 'identical')
-    .flatMap((child) => {
+    .map((child) => {
       const { type, name } = child;
       const currentPath = getPath([path, name]);
-      const value = valueToString(child.value);
-      const newValue = valueToString(child.value2);
 
       switch (type) {
-        case 'only2': {
-          return `Property '${currentPath}' was added with value: ${value}`;
+        case 'unchanged': {
+          return null;
         }
-        case 'only1': {
+        case 'added': {
+          return `Property '${currentPath}' was added with value: ${stringify(child.value)}`;
+        }
+        case 'removed': {
           return `Property '${currentPath}' was removed`;
         }
-        case 'different': {
-          return `Property '${currentPath}' was updated. From ${value} to ${newValue}`;
+        case 'changed': {
+          return `Property '${currentPath}' was updated. From ${stringify(child.value)} to ${stringify(child.value2)}`;
         }
         case 'nested': {
-          return stringify(child.children, currentPath);
+          return makePlain(child.children, currentPath);
         }
         default: {
           throw Error('Incorrect data');
         }
       }
-    });
+    })
+    .filter((child) => child !== null);
   return [...lines].join('\n');
 };
 
 const makePlainDiff = (data) => {
   const iter = (currentNode, path) => {
     const { children } = currentNode;
-    const result = stringify(children, path);
+    const result = makePlain(children, path);
     return result;
   };
   return iter(data, []);
