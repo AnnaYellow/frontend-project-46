@@ -7,7 +7,7 @@ const parse = (data, format) => {
   if ((format === 'yml') || (format === 'yaml')) {
     return yaml.load(data);
   }
-  throw Error('Wrong file format');
+  throw Error(`Wrong file format: ${format}`);
 };
 
 export default parse;

@@ -13,7 +13,7 @@ const makeDiff = (data, format) => {
       return JSON.stringify(data);
     }
     default: {
-      throw Error('Incorrect format');
+      throw Error(`Incorrect format: ${format}`);
     }
   }
 };

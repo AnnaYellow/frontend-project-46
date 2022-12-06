@@ -4,12 +4,12 @@ import getDifferenceTree from './getDifferenceTree.js';
 import makeDiff from './formatters/index.js';
 import parse from './parse.js';
 
-const normalizeFilepath = (filepath) => path.resolve(process.cwd(), filepath);
+const getAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
 
 const getData = (filepath) => {
-  const normalizedFilepath = normalizeFilepath(filepath);
-  const formatName = path.extname(normalizedFilepath).slice(1);
-  const readFile = fs.readFileSync(normalizedFilepath, 'utf-8');
+  const absolutePath = getAbsolutePath(filepath);
+  const formatName = path.extname(absolutePath).slice(1);
+  const readFile = fs.readFileSync(absolutePath, 'utf-8');
   const parsedData = parse(readFile, formatName);
   return parsedData;
 };
