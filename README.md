@@ -25,7 +25,7 @@
 <section>
 <h3>Commands:</h3>
 <ul>
-<li>Main command: "gendiff filepath1, filepath2, -f 'format'"</li>
+<li>Main command: "gendiff 'filepath1' 'filepath2' -f 'format'"</li>
 <li>The program accepts both absolute and relative file paths. The file extension may be: json, yaml, yml</li>
 <li>You can choose stylish, plain or json format of output. Default format is stylish</li>
 <li>To display help, type "gendiff -h"</li>
