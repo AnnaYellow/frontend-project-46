@@ -19,18 +19,17 @@
 <li>Download package</li>
 <li>In command line: make install</li>
 <li>As library function: import genDiff from './index.js'</li>
+</ul>
 </section>
 
 <section>
 <h3>Commands:</h3>
-<p>Main command: "gendiff filepath1, filepath2, format".</p>
-<p>The program accepts both absolute and relative file paths. The file extension may be: json, yaml, yml.</p>
-<p>You can choose stylish, plain or json format of output. Default format is stylish.</p>
-<p>To display help, type "gendiff -h"</p>
-</section>
-
-<section>
-<p>Hexlet frontend development study project. Level 2.</p>
+<ul>
+<li>Main command: "gendiff filepath1, filepath2, format".</li>
+<li>The program accepts both absolute and relative file paths. The file extension may be: json, yaml, yml.</li>
+<li>You can choose stylish, plain or json format of output. Default format is stylish.</p>
+<li>To display help, type "gendiff -h"</li>
+</ul>
 </section>
 
 <a href="https://asciinema.org/a/541022" target="_blank"><img src="https://asciinema.org/a/541022.svg" /></a>
