@@ -14,11 +14,19 @@
 </section>
 
 <section>
-<h3>To use package</h3>
+<h3>Package installation:</h3>
 <ul>
 <li>Download package</li>
-<li>In command line: make install, type 'gendiff filepath1, fileparh2, format (stylish, plain, json)'</li>
-<li>As library function: inport gendiff from './index.js'</li>
+<li>In command line: make install</li>
+<li>As library function: import genDiff from './index.js'</li>
+</section>
+
+<section>
+<h3>Commands:</h3>
+<p>Main command: "gendiff filepath1, filepath2, format".</p>
+<p>The program accepts both absolute and relative file paths. The file extension may be: json, yaml, yml.</p>
+<p>You can choose stylish, plain or json format of output. Default format is stylish.</p>
+<p>To display help, type "gendiff -h"</p>
 </section>
 
 <section>

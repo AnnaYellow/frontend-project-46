@@ -12,8 +12,8 @@ const buildStylishTree = (lines, depth) => [
 ].join('\n');
 
 const stringify = (data, depth) => {
-  if ((!_.isPlainObject(data)) || (data === null)) {
-    return data;
+  if ((!_.isObject(data)) || (data === null)) {
+    return String(data);
   }
   const keys = _.keys(data);
   const lines = keys.map((key) => `${currentIndent(depth)}  ${key}: ${stringify(data[key], depth + 1)}`);

@@ -4,23 +4,16 @@ const buildDifference = (data1, data2) => {
   const keys = _.sortBy(_.union(_.keys(data1), _.keys(data2)));
 
   const children = keys.map((key) => {
-    if (!_.has(data1, key) && _.has(data2, key)) {
+    if (!_.has(data1, key)) {
       return {
         type: 'added',
         name: key,
         value: data2[key],
       };
     }
-    if (_.has(data1, key) && !_.has(data2, key)) {
+    if (!_.has(data2, key)) {
       return {
         type: 'removed',
-        name: key,
-        value: data1[key],
-      };
-    }
-    if (data1[key] === data2[key]) {
-      return {
-        type: 'unchanged',
         name: key,
         value: data1[key],
       };
@@ -30,6 +23,13 @@ const buildDifference = (data1, data2) => {
         type: 'nested',
         name: key,
         children: buildDifference(data1[key], data2[key]),
+      };
+    }
+    if (_.isEqual(data1[key], data2[key])) {
+      return {
+        type: 'unchanged',
+        name: key,
+        value: data1[key],
       };
     }
     return {
