@@ -5,7 +5,7 @@
 [![gendiff CI](https://github.com/AnnaYellow/frontend-project-46/actions/workflows/gendiff-CI.yml/badge.svg)](https://github.com/AnnaYellow/frontend-project-46/actions/workflows/gendiff-CI.yml)
 
 <section>
-<p>Gendiff - command line feature and library function. Gendiff shows the difference between two json or yaml files.</p>
+<p>Gendiff - command line program and library function. Gendiff shows the difference between two json or yaml files.</p>
 </section>
 
 <section>
